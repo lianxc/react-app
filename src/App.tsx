@@ -7,6 +7,8 @@ import UseImperativeHandleDemo from './hooks/useImperativeHandleDemo'
 import UseTranstionDemo from './hooks/useTranstionDemo'
 import UseReducerDemo from './hooks/useReducerDemo'
 import UseSelfHooksDemo from './hooks/useSelfHooksDemo'
+import SuspenseDemo from './components/SuspenseDemo'
+import PortalDemo from './components/PortalDemo'
 import './App.css'
 
 function App() {
@@ -20,7 +22,9 @@ function App() {
       {/* <UseImperativeHandleDemo demoName="UseImperativeHandleDemo" /> */}
       {/* <UseTranstionDemo demoName="UseTranstionDemo" /> */}
       {/* <UseReducerDemo demoName="UseReducerDemo" /> */}
-      <UseSelfHooksDemo demoName="UseSelfHooksDemo" />
+      {/* <UseSelfHooksDemo demoName="UseSelfHooksDemo" /> */}
+      {/* <SuspenseDemo demoName="SuspenseDemo" /> */}
+      <PortalDemo demoName="PortalDemo" />
     </>
   )
 }
