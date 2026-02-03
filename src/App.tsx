@@ -9,6 +9,7 @@ import UseReducerDemo from './hooks/useReducerDemo'
 import UseSelfHooksDemo from './hooks/useSelfHooksDemo'
 import SuspenseDemo from './components/SuspenseDemo'
 import PortalDemo from './components/PortalDemo'
+import UseDeferredValueDemo from './hooks/useDeferredValueDemo'
 import './App.css'
 
 function App() {
@@ -24,7 +25,8 @@ function App() {
       {/* <UseReducerDemo demoName="UseReducerDemo" /> */}
       {/* <UseSelfHooksDemo demoName="UseSelfHooksDemo" /> */}
       {/* <SuspenseDemo demoName="SuspenseDemo" /> */}
-      <PortalDemo demoName="PortalDemo" />
+      {/* <PortalDemo demoName="PortalDemo" /> */}
+      <UseDeferredValueDemo demoName="UseDeferredValueDemo" />
     </>
   )
 }
