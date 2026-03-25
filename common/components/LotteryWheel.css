@@ -1,0 +1,44 @@
+.lottery-wheel {
+  position: relative;
+  display: inline-block;
+}
+
+.lottery-wheel-canvas {
+  display: block;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.lottery-wheel-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: none;
+  background: #ff4757;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+  z-index: 10;
+}
+
+.lottery-wheel-button:hover:not(:disabled) {
+  background: #ff6b7a;
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.lottery-wheel-button:active:not(:disabled) {
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+.lottery-wheel-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+

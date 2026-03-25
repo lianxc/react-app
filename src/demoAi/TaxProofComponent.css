@@ -1,0 +1,110 @@
+.tax-proof-container {
+  font-family: 'Microsoft YaHei', Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #666;
+}
+
+.info-section {
+  margin-bottom: 30px;
+}
+
+.info-item {
+  display: flex;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.label {
+  font-weight: bold;
+  width: 120px;
+  color: #333;
+}
+
+.value {
+  flex: 1;
+  color: #333;
+}
+
+.table-section {
+  margin-bottom: 30px;
+}
+
+.tax-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #e0e0e0;
+}
+
+.tax-table th,
+.tax-table td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #e0e0e0;
+}
+
+.tax-table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  color: #333;
+}
+
+.summary-section {
+  margin-bottom: 30px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+}
+
+.summary-item {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.summary-label {
+  font-weight: bold;
+  width: 120px;
+  color: #333;
+}
+
+.summary-value {
+  flex: 1;
+  color: #333;
+  font-weight: bold;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 20px;
+  color: #666;
+  font-size: 14px;
+}
+
+.issued-by {
+  margin-bottom: 5px;
+}
+
+.date {
+  font-style: italic;
+}

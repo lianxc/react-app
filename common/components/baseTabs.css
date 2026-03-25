@@ -1,0 +1,52 @@
+.base-tabs {
+  width: 100%;
+}
+
+.base-tabs-nav {
+  display: flex;
+  border-bottom: 1px solid #f0f0f0;
+  background: #fff;
+}
+
+.base-tabs-tab {
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+  transition: all 0.3s;
+  position: relative;
+  user-select: none;
+}
+
+.base-tabs-tab:hover:not(.base-tabs-tab-disabled) {
+  color: #1890ff;
+}
+
+.base-tabs-tab-active {
+  color: #1890ff;
+  font-weight: 500;
+}
+
+.base-tabs-tab-active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #1890ff;
+}
+
+.base-tabs-tab-disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.base-tabs-content {
+  padding: 16px 0;
+}
+
+.base-tabs-panel {
+  width: 100%;
+}
+

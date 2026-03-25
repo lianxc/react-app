@@ -1,0 +1,14 @@
+.buttonGroup {
+  display: flex;
+  gap: 10px;
+
+  // 允许全局覆盖的钩子
+  :global {
+    .button1 {
+      color: red;
+    }
+    .button2 {
+      color: blue;
+    }
+  }
+}

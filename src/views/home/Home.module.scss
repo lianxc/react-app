@@ -1,0 +1,10 @@
+.nav {
+  display: flex;
+  justify-content: center;
+
+  a {
+    & + a {
+      margin-left: 10px;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+/* *-enter 进入动画的起始状态
+*-enter-active 进入动画的激活状态
+*-enter-done 进入动画的结束状态
+*-exit 离开动画的起始状态
+*-exit-active 离开动画的激活状态
+*-exit-done 离开动画的结束状态 */
+
+.my-fade-enter {
+  opacity: 0;
+}
+.my-fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.my-fade-exit {
+  opacity: 1;
+}
+.my-fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+}
+
+.my-fade-appear {
+  opacity: 0;
+}
+.my-fade-appear-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}

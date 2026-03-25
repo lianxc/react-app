@@ -1,0 +1,56 @@
+.couponEnterBox {
+  position: relative;
+  width: 710px;
+  height: 130px;
+  margin-top: 20px;
+  border-radius: 16px;
+  border: 2px solid #eee;
+  background: #fff;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .img {
+    width: 160px;
+  }
+
+  .arr {
+    width: 36px;
+    transform: rotate(-90deg);
+  }
+
+  .name {
+    flex: 1;
+    font-size: 30px;
+    padding: 0 20px;
+  }
+
+  .num {
+    color: #999;
+    font-size: 26px;
+    padding: 0 6px;
+  }
+
+  .max {
+    background: #FE5C8D;
+    color: #fff;
+    display: flex;
+    align-items: center;
+
+    :global(span) {
+      width: 20px;
+      height: 20px;
+      background-image: url('/assets/img/diamond-s.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+
+      margin: 0 5px;
+    }
+  }
+}
+
+.comMarkTag {
+  display: flex;
+  align-items: center;
+}

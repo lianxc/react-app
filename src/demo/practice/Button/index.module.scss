@@ -1,0 +1,18 @@
+.button {
+  @include flex-center;
+  // width: 100px;
+  // height: 30px;
+  // line-height: 30px;
+  padding: 10px 20px;
+  font-size: 24px;
+  background-color: #409EFF;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+    background-color: #333;
+  }
+  &:active {
+    background-color: #666;
+  }
+}

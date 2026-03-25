@@ -1,6 +1,7 @@
 import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
+import reactCompiler from 'eslint-plugin-react-compiler';
 import tseslint from 'typescript-eslint'
 import { defineConfig } from 'eslint/config'
 
@@ -12,6 +13,7 @@ export default defineConfig([
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
+      'react-compiler': reactCompiler,
     },
     languageOptions: {
       ecmaVersion: 2020,
@@ -23,7 +25,9 @@ export default defineConfig([
       },
     },
     rules: {
-      ...reactHooks.configs.recommended.rules,
+      // 可以添加其他自定义规则
+      'react/react-in-jsx-scope': 'off',
+      'react-hooks/exhaustive-deps': 'error',
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },

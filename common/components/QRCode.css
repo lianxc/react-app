@@ -1,0 +1,10 @@
+.qrcode-container {
+  display: inline-block;
+}
+
+.qrcode-image {
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+

@@ -1,0 +1,80 @@
+.lottery-grid {
+  display: inline-block;
+}
+
+.lottery-grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 8px;
+  width: 300px;
+  height: 300px;
+  position: relative;
+}
+
+.lottery-grid-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.lottery-grid-item-active {
+  border-color: #ff4757;
+  background: #fff5f5 !important;
+  box-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
+  transform: scale(1.05);
+  z-index: 1;
+}
+
+.lottery-grid-icon {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+.lottery-grid-name {
+  font-size: 12px;
+  color: #333;
+  text-align: center;
+  padding: 8px;
+}
+
+.lottery-grid-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: none;
+  background: #ff4757;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+  z-index: 10;
+}
+
+.lottery-grid-button:hover:not(:disabled) {
+  background: #ff6b7a;
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.lottery-grid-button:active:not(:disabled) {
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+.lottery-grid-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+

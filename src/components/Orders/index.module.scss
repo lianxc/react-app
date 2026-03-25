@@ -1,0 +1,141 @@
+.detailsBox {
+  display: flex;
+  flex-direction: column;
+
+  article {
+    flex: 1;
+    max-height: 700px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .title {
+    height: 88px;
+    line-height: 88px;
+    text-align: center;
+    font-size: 30px;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .flex {
+      flex: 1;
+    }
+  }
+
+  .logoName {
+    img {
+      width: 140px;
+    }
+
+    p {
+      font-size: 26px;
+      padding: 0 14px;
+      max-width: 360px;
+    }
+  }
+
+  .diamond {
+    font-size: 80px;
+
+    img {
+      width: 40px;
+      margin: 20px 10px 0;
+    }
+  }
+
+  .statusTips {
+    font-size: 28px;
+    color: #999;
+    padding: 24px 0 40px;
+    text-align: center;
+    border-bottom: 16px solid #F6F8F9;
+  }
+
+  .userBox {
+    margin: 0 32px;
+    padding: 32px 0;
+    color: #999;
+    font-size: 28px;
+    border-bottom: 1PX solid #E9E9EA;
+
+    .user {
+      margin-top: 16px;
+
+      img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+      }
+
+      p {
+        flex: 1;
+        padding: 0 16px;
+        font-size: 30px;
+        color: #333;
+      }
+
+      span {
+        font-size: 28px;
+        color: #333;
+      }
+    }
+  }
+
+  .priceBox {
+    width: 718px;
+    margin: 32px auto;
+    padding: 32px 16px 0;
+    background: #F6F9FF;
+    border-radius: 16px;
+    overflow: hidden;
+
+    > .row {
+      margin-bottom: 32px;
+    }
+
+    img {
+      width: 30px;
+      font-size: 28px;
+    }
+  }
+
+  .infoBox {
+    padding: 0 32px;
+    font-size: 28px;
+    margin-top: 32px;
+
+    > .row {
+      margin-bottom: 32px;
+    }
+
+    .flex {
+      color: #999;
+    }
+
+    .copy {
+      width: 30px;
+    }
+  }
+
+  .btnBox {
+    padding: 20px 0 30px;
+    background: #fff;
+
+    > a {
+      display: block;
+      width: 620px;
+      height: 90px;
+      line-height: 90px;
+      margin: 0 auto;
+      background: #833BFA;
+      border-radius: 50px;
+      font-size: 30px;
+      color: #fff;
+      text-align: center;
+    }
+  }
+}

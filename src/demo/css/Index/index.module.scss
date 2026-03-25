@@ -1,0 +1,14 @@
+.index {
+  .myButtonGroup {
+    :global {
+      .button1 {
+        background-color: red;
+        color: white;
+      }
+      .button2 {
+        background-color: blue;
+        color: white;
+      }
+    }
+  }
+}

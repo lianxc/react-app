@@ -1,0 +1,3 @@
+@use './normalize.scss' as *; // 初始化样式
+@use './animation.scss' as *; // 动画样式
+@use './safe-area.scss' as *; // 兼容iPhoneX底部样式

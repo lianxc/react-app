@@ -1,0 +1,176 @@
+.couponItemBox {
+  position: relative;
+  width: 710px;
+  margin: 16px auto;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: flex-start;
+
+  .card {
+    width: 140px;
+    height: 190px;
+    background-image: url('/assets/img/card-blue.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: #fff;
+    direction: ltr;
+
+    b {
+      font-size: 40px;
+    }
+  }
+
+  .mainInfo {
+    flex: 1;
+    padding: 0 16px;
+    color: #777;
+    font-size: 22px;
+
+    .rebate {
+      font-size: 30px;
+      color: #333;
+      margin-bottom: 16px;
+      font-weight: bold;
+    }
+
+    .diamond {
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+
+      .d {
+        width: 20px;
+        height: 20px;
+        background-image: url('/assets/img/diamond-s.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin: 0 5px;
+      }
+    }
+
+    .residueTime {
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 26px;
+      }
+
+      .time {
+        padding: 0 10px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 22px;
+        color: #777;
+      }
+    }
+
+    .line {
+      width: 94%;
+      height: 2px;
+      background: rgba(133, 133, 133, 0.1);
+      margin-bottom: 12px;
+    }
+
+    .content {
+      height: 0;
+      display: none;
+
+      &.open {
+        height: auto;
+        display: block;
+      }
+    }
+
+    .expanded {
+      display: flex;
+      align-items: center;
+
+      &.open {
+        .icon {
+          transform: rotate(180deg);
+        }
+      }
+
+      .icon {
+        width: 30px;
+        height: 30px;
+        background-image: url('/assets/img/icon-expanded.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        transition: 0.3s;
+      }
+    }
+  }
+
+  &.blue {
+    background: rgba(67, 159, 255, 0.16);
+  }
+
+  &.red {
+    background: rgba(255, 139, 113, 0.12);
+
+    .card {
+      background-image: url('/assets/img/card-red.png');
+    }
+  }
+
+  &.selection {
+    background: #F3F4F5;
+    align-items: center;
+
+    &.red {
+      .card {
+        width: 170px;
+        height: 280px;
+        background-image: url('/assets/img/card-red-big.png');
+      }
+    }
+
+    .card {
+      width: 170px;
+      height: 280px;
+      background-image: url('/assets/img/card-blue-big.png');
+
+      b {
+        font-size: 50px;
+      }
+    }
+  }
+
+  &.selected {
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      border: 4px solid #833BFA;
+      border-radius: 16px;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 47px;
+      height: 47px;
+      background-image: url('/assets/img/icon-selected.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+.arinb {
+  font-style: italic;
+  font-weight: bold;
+}

@@ -1,0 +1,42 @@
+.list-wrapper {
+  .pull-down-area {
+    position: absolute;
+    top: -60px; // 初始隐藏在顶部上方
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: opacity 0.2s;
+    
+    .pull-down-area-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      
+      .pull-down-area-content-text {
+        font-size: 14px;
+        font-weight: 500;
+      }
+      
+      .pull-down-area-content-icon {
+        font-size: 20px;
+        animation: none;
+      }
+    }
+  }
+
+  .list-content {
+    color: #ccc;
+  }
+}
+
+.scroll-item {  
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+}

@@ -1,0 +1,38 @@
+.bannerBox {
+  a {
+    margin-top: 20px;
+    display: block;
+
+    img {
+      border-radius: 5px;
+    }
+  }
+
+  &.half {
+    .swipeList {
+      width: 80%;
+      margin: 20px auto 0;
+    }
+
+    .pkgTip {
+      padding: 10px;
+      transform: scale(0.9);
+      transform-origin: center center;
+    }
+  }
+
+  .swipeList {
+    margin-top: 20px;
+    width: 100%;
+    direction: ltr;
+  }
+
+  .pkgTip {
+    margin-top: 20px;
+    padding: 20px;
+    background: #FFF3C0;
+    border-radius: 16px;
+    text-align: center;
+    color: #8B572A;
+  }
+}

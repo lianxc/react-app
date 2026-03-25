@@ -1,0 +1,98 @@
+.couponPopupBox {
+  height: 900px;
+}
+
+.couponSelectionBox {
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 900px;
+
+  .title {
+    text-align: center;
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .couponContent {
+    .notSelect {
+      padding: 20px;
+      border-radius: 16px;
+      background: #F3F4F5;
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+      cursor: pointer;
+
+      .icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid #ccc;
+        margin-right: 16px;
+
+        &.selected {
+          border-color: #833BFA;
+          background: #833BFA;
+        }
+      }
+    }
+  }
+}
+
+.couponNewBox {
+  position: relative;
+  width: 600px;
+  border-radius: 36px;
+  background: #fff;
+  text-align: center;
+  color: #333;
+  padding: 200px 0 42px;
+
+  .hd {
+    position: absolute;
+    left: 0;
+    top: -30px;
+    width: 100%;
+  }
+
+  .title {
+    padding: 24px;
+    font-size: 32px;
+  }
+
+  .text {
+    font-size: 28px;
+    color: #777;
+    padding: 0 48px;
+  }
+
+  .dv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px 0;
+    font-size: 62px;
+    font-weight: bold;
+
+    img {
+      width: 64px;
+      margin: 0 5px;
+    }
+  }
+
+  .btn {
+    width: 504px;
+    height: 88px;
+    margin: 0 auto;
+    border-radius: 50px;
+    background: #833BFA;
+    font-size: 32px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

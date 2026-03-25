@@ -1,0 +1,65 @@
+.halfHeader {
+  padding: 20px 24px;
+  background: #FFF;
+  border-bottom: 1PX solid #E9E9E9;
+
+  .halfTop {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: #999;
+
+    img {
+      width: 24px;
+      margin: 0 6px;
+    }
+
+    b {
+      color: #333;
+    }
+  }
+
+  .pkgTip {
+    margin-top: 6px;
+    color: #F5A623;
+  }
+}
+
+.diamondsHeader {
+  padding: 20px 0 40px;
+  background: #FFF;
+  text-align: center;
+
+  img {
+    width: 130px;
+    margin: 0 auto;
+  }
+
+  span {
+    font-size: 28px;
+    color: #999;
+  }
+
+  .diamond {
+    font-size: 54px;
+    margin-top: 6px;
+  }
+
+  .noble {
+    margin-top: 16px;
+    color: #999;
+    font-size: 28px;
+
+    span {
+      display: inline-block;
+      vertical-align: middle;
+      color: #313131;
+    }
+
+    img {
+      display: inline-block;
+      vertical-align: middle;
+      width: 32px;
+    }
+  }
+}

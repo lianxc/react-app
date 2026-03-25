@@ -1,0 +1,17 @@
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.marquee-content {
+  display: inline-block;
+  will-change: transform;
+}
+
+.marquee-item {
+  display: inline-block;
+  white-space: nowrap;
+}
+

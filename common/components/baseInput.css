@@ -1,0 +1,39 @@
+.base-input-wrapper {
+  width: 100%;
+}
+
+.base-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+
+.base-input:focus {
+  border-color: #1890ff;
+}
+
+.base-input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.base-input-error {
+  border-color: #ff4d4f;
+}
+
+.base-input-error:focus {
+  border-color: #ff4d4f;
+}
+
+.base-input-error-text {
+  margin-top: 4px;
+  color: #ff4d4f;
+  font-size: 12px;
+  line-height: 1.5;
+}
+

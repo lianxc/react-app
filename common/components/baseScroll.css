@@ -1,0 +1,44 @@
+.base-scroll {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.base-scroll-content {
+  min-height: 100%;
+}
+
+.base-scroll-refresh {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.base-scroll-refresh-text,
+.base-scroll-refresh-loading {
+  font-size: 14px;
+  color: #999;
+  padding: 10px 0;
+}
+
+.base-scroll-loadmore,
+.base-scroll-nomore {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #999;
+}
+
+.base-scroll-nomore {
+  color: #ccc;
+}
+

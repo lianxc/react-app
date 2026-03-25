@@ -1,0 +1,222 @@
+// 用于div显示图片时
+@mixin div-img($width, $height, $url, $var: undefined) {
+  width: $width;
+  height: $height;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  @if $var != undefined {
+    background-image: var($var, url($url));
+  } @else {
+    background-image: url($url);
+  }
+}
+
+// flex 垂直水平居中
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// flex 水平居中
+@mixin flex-v-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// flex-inline 垂直水平居中
+@mixin flex-inline-center {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// transform 水平居中
+@mixin transform-h-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+// transform 垂直居中
+@mixin transform-v-center {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+// transform 垂直水平居中
+@mixin transform-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// 超出多行省略号
+@mixin multiple-line-ellipsis($lineNum) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lineNum;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+
+  @if $lineNum == 1 {
+    white-space: nowrap;
+  }
+}
+
+// 超出一行省略号
+@mixin ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// 清楚浮动
+@mixin clearfix {
+  &::before {
+    content: '';
+    display: table;
+  }
+
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+// 用于div style显示背景图片大小容器
+@mixin div-img-size($width, $height) {
+  width: $width;
+  height: $height;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+// 用于实现圆（直接用border-radius: 50%在android有些机子上不圆）
+@mixin circle($width, $height) {
+  width: $width * 2px;
+  height: $height * 2px;
+  border-radius: 50%;
+  transform-origin: 0% center;
+  transform: scale(0.5);
+}
+
+// 逻辑属性，用于处理阿语镜像
+@mixin margin($top, $right, $bottom, $left) {
+  margin: $top $right $bottom $left;
+
+  html[lang=ar] & {
+    margin-left: $right;
+    margin-right: $left;
+  }
+}
+@mixin padding($top, $right, $bottom, $left) {
+  padding: $top $right $bottom $left;
+
+  html[lang=ar] & {
+    padding-left: $right;
+    padding-right: $left;
+  }
+}
+@mixin left($value) {
+  left: $value;
+
+  html[lang=ar] & {
+    left: auto;
+    right: $value;
+  }
+}
+@mixin right($value) {
+  right: $value;
+
+  html[lang=ar] & {
+    right: auto;
+    left: $value;
+  }
+}
+@mixin translate($x, $y) {
+  transform: translate($x, $y);
+
+  html[lang=ar] & {
+    transform: translate(-$x, $y);
+  }
+}
+@mixin text-align($value) {
+  text-align: $value;
+
+  @if $value == 'left' {
+    text-align: left;
+
+    html[lang=ar] & {
+      text-align: right;
+    }
+  } @else if $value == 'right' {
+    text-align: right;
+
+    html[lang=ar] & {
+      text-align: left;
+    }
+  }
+}
+@mixin radius($top, $right, $bottom, $left) {
+  // 左半圆：右侧为 0
+  @if $right == 0 and $bottom == 0 {
+    border-radius: $top 0 0 $left;
+
+    html[lang=ar] & {
+      border-radius: 0 $top $left 0;
+    }
+
+  // 右半圆：左侧为 0
+  } @else if $top == 0 and $left == 0 {
+    border-radius: 0 $right $bottom 0;
+
+    html[lang=ar] & {
+      border-radius: $right 0 0 $bottom;
+    }
+
+  // 左对角：右上和左下有圆角
+  } @else if $right == 0 and $left == 0 {
+    border-radius: $top 0 $bottom 0;
+
+    html[lang=ar] & {
+      border-radius: 0 $top 0 $bottom;
+    }
+
+  // 右对角：左上和右下有圆角
+  } @else if $top == 0 and $bottom == 0 {
+    border-radius: 0 $right 0 $left;
+
+    html[lang=ar] & {
+      border-radius: $right 0 $left 0;
+    }
+
+  // 默认，直接使用传入的4个值
+  } @else {
+    border-radius: $top $right $bottom $left;
+  }
+}
+
+// 渐变色字体，已处理兼容问题
+@mixin linear-gradient-text($linearGradient) {
+  font-weight: bold;
+  background-clip: text!important;
+  -webkit-background-clip: text!important;
+  -webkit-text-fill-color: transparent;
+  background-image: $linearGradient;
+  color: transparent;
+  background-repeat: no-repeat;
+  background-size: 98% 98%;
+  background-position: 50% 50%;
+}
+
+// 外边框描边
+@mixin text-border($width, $color) {
+  text-shadow: 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color, 0 0 $width $color;
+}

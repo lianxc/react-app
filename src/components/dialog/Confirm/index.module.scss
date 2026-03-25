@@ -1,0 +1,46 @@
+.popModal {
+  width: 600px;
+  padding: 48px;
+  font-size: 28px;
+  color: #999;
+  text-align: center;
+  background: #fff;
+  border-radius: 30px;
+
+  .confirmTitle {
+    margin-bottom: 24px;
+    color: #313131;
+    font-size: 32px;
+    font-weight: 400;
+  }
+
+  .btnWrap {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .btnCancel,
+  .btnConfirm {
+    flex: 1;
+    margin: 0 10px;
+    height: 88px;
+    line-height: 88px;
+    text-align: center;
+    font-size: 32px;
+    outline: none;
+    border: none;
+    border-radius: 44px;
+    background: #F4F4F4;
+  }
+
+  .btnConfirm {
+    color: #fff;
+    background: #833BFA;
+  }
+}
+
+:global(.van-popup) {
+  overflow-y: initial;
+  background-color: transparent;
+}

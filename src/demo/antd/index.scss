@@ -1,0 +1,19 @@
+$prefix: 'comp-antd';
+
+.#{$prefix} {
+  &__button1 {
+    --border-radius: 20px;
+    color: red;
+  }
+  &__button2 {
+    --border-radius: 20px;
+    color: blue;
+  }
+  &__button3 {
+    --border-radius: 20px;
+    color: green;
+  }
+  &__popup-content {
+    padding: 36px;
+  }
+}

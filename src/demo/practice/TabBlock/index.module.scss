@@ -1,0 +1,47 @@
+@mixin module-header-base {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: -2px;
+  padding: 0 100px 24px;
+  font-size: 30px;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #d7ba75;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// 生成全局类
+:global(.module-header) {
+  @include module-header-base;
+}
+
+.module {
+  @include flex-v-center;
+  width: 600px;
+  position: relative;
+
+  .module-header {
+    @include module-header-base; // 使用 mixin
+  }
+
+  .module-top {
+    @include flex-center;
+    width: 100%;
+  }
+
+  .module-center {
+    @include flex-center;
+    width: 100%;
+    margin-top: -2px;
+    background-size: 100%;
+    background-repeat: repeat-y;
+  }
+
+  .module-bottom {
+    width: 100%;
+    margin-top: -2px;
+  }
+}
