@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { getPearConfig26335, getPearConfig45397 } from '@/services/api';
 
 const fetchData26335 = async () => {
   const response = await fetch('https://d1y1q88l9efen2.cloudfront.net/as/common-static/pear/prod/10000000833.json?t=1772679489240');
@@ -14,9 +15,21 @@ const fetchData45397 = async () => {
 }
 
 const RequestRQ = ({ demoName }: { demoName: string }) => {
-  const { data: data26335, isLoading: isLoading26335, error: error26335 } = useQuery({
+  const { data: data26335, isLoading: isLoading26335, error: error26335, isSuccess: isSuccess26335, status: status26335 } = useQuery({
     queryKey: ['data26335'],
     queryFn: fetchData26335,
+    // 控制请求是否执行
+    enabled: true,
+    // 缓存时间
+    staleTime: 0,
+    // 失败重试次数
+    retry: 3,
+    // 失败重试延迟时间
+    retryDelay: 1000,
+    // 窗口重新聚焦时重新获取
+    refetchOnWindowFocus: true,
+    // 初始数据
+    initialData: { cn: { lang: 'cn' } },
   });
 
   const { data: data45397, isLoading: isLoading45397, error: error45397 } = useQuery({
@@ -24,6 +37,12 @@ const RequestRQ = ({ demoName }: { demoName: string }) => {
     queryFn: fetchData45397,
     enabled: !!data26335,
   });
+
+  console.log('data26335', data26335);
+  console.log('isLoading26335', isLoading26335);
+  console.log('error26335', error26335);
+  console.log('isSuccess26335', isSuccess26335);
+  console.log('status26335', status26335);
 
   const formatData = (data: any) => {
     return JSON.stringify(data.cn, null, 2);

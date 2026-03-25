@@ -4,7 +4,11 @@ import { ErrorNamesEnum, CodeEnum, TipsEnum, GetTokenMethodEnum } from './types/
 const errorNamesEnum = ErrorNamesEnum;
 
 // 错误情况对应的提示语，请自行配置
-const tipsMap = TipsEnum;
+const tipsMap = {
+  error: TipsEnum.ERROR,
+  dataException: TipsEnum.DATA_EXCEPTION,
+  tokenExpired: TipsEnum.TOKEN_EXPIRED
+};
 
 // 响应码对应的情况，请自行配置
 const codeMap = CodeEnum;

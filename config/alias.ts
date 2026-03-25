@@ -10,6 +10,8 @@ const alias = {
   'STATIC': 'static',
   'MONITOR': 'common/monitor',
   'COMPONENTS': 'common/components',
+  'TOKEN': 'common/token',
+  'CONSTANT': 'constant',
   '@': 'src',
   '@src': 'src',
   '@interface': 'src/interface',

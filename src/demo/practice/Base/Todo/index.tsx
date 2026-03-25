@@ -1,44 +1,72 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useLocalStorage } from '@/hooks/useStorage'
+import { useTodos, useCreateTodo, useUpdateTodo, useDeleteTodo } from './hooks'
 import useDebounce from '@/hooks/useDebounce'
 
-interface Todo {
+export interface Todo {
   id: number
   text: string
   completed: boolean
   isEditing: boolean
 }
+
 const Todo = () => {
+  const {
+    // 接口返回数据
+    data: fetchedTodos,
+    // 接口状态
+    isLoading: isFetchingTodo,
+    // 接口是否成功
+    isSuccess: isSuccessTodo,
+    // 接口是否错误
+    isError: isErrorTodo,
+    // 接口错误信息
+    error: errorTodo,
+    // 重新请求接口
+    refetch: refetchTodo,
+  } = useTodos()
+  const createTodoMutation = useCreateTodo()
+  const updateTodoMutation = useUpdateTodo()
+  const deleteTodoMutation = useDeleteTodo()
+  const { isPending } = createTodoMutation
+
   const [todos, setTodos] = useState<Todo[]>([])
   const [input, setInput] = useState('')
   const [filter, setFilter] = useState('all')
   const inputRef = useRef<HTMLInputElement>(null)
 
+  // 当 fetchedTodos 变化时，更新本地状态
+  useEffect(() => {
+    if (fetchedTodos) {
+      setTodos(fetchedTodos as Todo[])
+    }
+  }, [fetchedTodos])
+
   // 添加待办事项
-  const addTodo = () => {
+  const addTodo = async () => {
     if (input.trim() === '') {
       setInput('');
       inputRef.current?.focus()
       return
     }
     const newId = todos.length ? todos[todos.length - 1].id + 1 : 1
-    setTodos([...todos, { id: newId, text: input, completed: false, isEditing: false }])
+    await createTodoMutation.mutateAsync({ id: newId, text: input, completed: false, isEditing: false })
     setInput('')
   }
 
   // 删除待办事项
-  const deleteTodo = (id: number) => {
-    setTodos(todos.filter(todo => todo.id !== id).map((todo, index) => ({ ...todo, id: index + 1 })))
+  const deleteTodo = async (id: number) => {
+    await deleteTodoMutation.mutateAsync(id)
   }
 
   // 切换待办事项状态
-  const toggleTodo = (id: number) => {
-    setTodos(todos.map(todo => todo.id === id ? { ...todo, completed: !todo.completed } : todo))
+  const toggleTodo = async (todo: Todo) => {
+    await updateTodoMutation.mutateAsync({ id: todo.id, completed: !todo.completed })
   }
 
   // 编辑待办事项
-  const editTodo = (id: number, text: string) => {
-    setTodos(todos.map(todo => todo.id === id ? { ...todo, text: text } : todo))
+  const editTodo = async (id: number, text: string) => {
+    await updateTodoMutation.mutateAsync({ id, text })
   }
 
   // 设置待办事项编辑状态
@@ -76,7 +104,7 @@ const Todo = () => {
             }
           }}
         />
-        <button onClick={addTodo}>Add</button>
+        <button onClick={addTodo} disabled={isPending}>{isPending ? '添加中...' : '添加'}</button>
       </div>
 
       {/* 筛选按钮 */}
@@ -89,7 +117,7 @@ const Todo = () => {
       <ul className="todo-list">
         {filteredTodos.map(todo => (
           <li key={todo.id}>
-            <input type="checkbox" checked={todo.completed} onChange={() => toggleTodo(todo.id)} />
+            <input type="checkbox" checked={todo.completed} onChange={() => toggleTodo(todo)} />
             <span className="todo-id">{todo.id}.</span>
             {todo.isEditing ? (
               <input

@@ -39,3 +39,4 @@ export type { ScreenshotProps } from './Screenshot';
 export { default as QRCode, generateQRCode } from './QRCode';
 export type { QRCodeProps } from './QRCode';
 
+export { default as Loading } from './Loading';

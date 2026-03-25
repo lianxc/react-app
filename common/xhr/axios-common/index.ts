@@ -11,28 +11,20 @@
  * @Date: 2019-03-19 12:03:25
  * @LastEditTime: 2023-03-31 11:59:40
  */
-import { errorNamesEnum, tipsMap, codeMap, REPORT_ERR_CODE, getTokenMethodMap } from './constant';
+import { errorNamesEnum, tipsMap, codeMap, REPORT_ERR_CODE } from './constant';
 import { getDebugInfoFromUrl, mixParams, createError } from './utils';
 import { DebugInfo, DefaultConfig, DefaultOptions } from './types/type';
-import axiosc from '@bigo/axios-common';
-import Loading from 'COMPONENTS/base/loading';
-import HomeLoading from 'COMPONENTS/helloyo/HomeLoading';
-import * as TokenUtil from 'TOKEN';
-import 'axios';
-import './plugin';
+import axiosc from 'axios';
+import Loading from 'COMPONENTS/Loading';
+// import './plugin';
 
+const { MODE, VITE_BUILD_ENV, VITE_API_DOMAIN } = import.meta.env;
 // 是否开发环境
-const IS_DEV = process.env.NODE_ENV === 'development'; // development、production
+const IS_DEV = MODE === 'development'; // development、production
 // 是否开发+提测环境
-const IS_DEV_TEST = process.env.BUILD_ENV === 'dev' || process.env.BUILD_ENV === 'test'; // dev test prod
-
+const IS_DEV_TEST = ['dev', 'test'].includes(VITE_BUILD_ENV); // dev test prod
 // 默认接口域名
-let apiDomain: string;
-if (typeof __GLOBAL_API_DOMAIN__ === 'undefined') {
-  apiDomain = 'https://act.ppx520.com';
-} else {
-  apiDomain = __GLOBAL_API_DOMAIN__;
-}
+const apiDomain: string = VITE_API_DOMAIN;
 
 /*
 * 兼容axiosc不支持json问题
@@ -41,22 +33,20 @@ if (typeof __GLOBAL_API_DOMAIN__ === 'undefined') {
 function polyfillJsonType() {
   const axioscTransformRequest = axiosc.defaults.transformRequest[0];
   axiosc.defaults.transformRequest[0] = (data, headers) => {
-    // eslint-disable-next-line no-underscore-dangle
     if (typeof data === 'object' && data.__useJson) { // 判断content-type 是否是json类型
       headers['Content-Type'] = 'application/json;charset=utf-8';
-      // eslint-disable-next-line no-underscore-dangle
       delete data.__useJson;
       return JSON.stringify(data);
     }
     return axioscTransformRequest(data);
   };
 }
+polyfillJsonType();
+
+axiosc.defaults.headers.common['X-Requested-With'] = false;
 
 // axiosc请求的promise状态map
 const REQUEST_PROMISE_STATUS_MAP: Record<string, any> = {};
-/* ------------- 配置项 over ------------- */
-
-polyfillJsonType();
 
 /**
  * @description: ajaxConstructor
@@ -71,7 +61,7 @@ export default function ajaxConstructor(initConfig: Partial<DefaultConfig> = {})
     isNeedToken: true,
     tipsMap,
     codeMap,
-    getTokenMethodMap,
+    getTokenMethod: () => Promise.resolve('mock-token'),
     debugInfo: { debug_uid: '3217416026', token: '' } as DebugInfo, // 调试信息
     formatTpl: undefined, // yapi校验数据
     reportErrCode: REPORT_ERR_CODE, //  sentry上报code码区段
@@ -90,7 +80,7 @@ export default function ajaxConstructor(initConfig: Partial<DefaultConfig> = {})
   }
   // 合并用户配置项和默认配置项
   const globalConfig: DefaultConfig = { ...DEFAULT_CONFIG, ...initConfig };
-  const getTokenMethod = globalConfig.getTokenMethodMap[globalConfig.app] || globalConfig.getTokenMethodMap.HELLO;
+  const getTokenMethod = globalConfig.getTokenMethod;
 
   /**
    * @description: api统一入口：请求参数统一增加token
@@ -103,7 +93,6 @@ export default function ajaxConstructor(initConfig: Partial<DefaultConfig> = {})
     const defaultOptions: DefaultOptions = {
       type: 'post', // 请求方式
       showLoading: false, // 展示loading
-      hyHomeLoading: false, // helloyo主页loading
       isHandleMsgBySelf: false, // 是否自己处理错误
       proxy: undefined, // 为了实现不同api代理到不同的环境
       timeout: 15000, // checklist 应对5%左右的接口超时失败（ios、电信） 暂时修改默认超时未15s
@@ -122,7 +111,6 @@ export default function ajaxConstructor(initConfig: Partial<DefaultConfig> = {})
       isHandleMsgBySelf,
       isNeedToken,
       showLoading,
-      hyHomeLoading,
       proxy,
       timeout,
       format,
@@ -136,10 +124,8 @@ export default function ajaxConstructor(initConfig: Partial<DefaultConfig> = {})
 
     // __useJson 私有属性 标识使用json类型传递数据 会在polyfillJsonType方法里删除
     if (useJSON && typeof params === 'object') {
-      // eslint-disable-next-line no-underscore-dangle
       params.__useJson = true;
     } else if (typeof params === 'object') {
-      // eslint-disable-next-line no-underscore-dangle
       params.__useJson = undefined;
     }
 
@@ -161,7 +147,7 @@ export default function ajaxConstructor(initConfig: Partial<DefaultConfig> = {})
           data: params,
           timeout,
           baseURL,
-          headers,
+          // headers,
           requestConfig: globalConfig, // 请求配置信息
           format,
           withCredentials,
@@ -173,13 +159,6 @@ export default function ajaxConstructor(initConfig: Partial<DefaultConfig> = {})
                 Loading(true);
               } else {
                 Loading(false);
-              }
-            }
-            if (hyHomeLoading) {
-              if (bool) {
-                HomeLoading(true);
-              } else {
-                HomeLoading(false);
               }
             }
             if (!bool) {
@@ -198,8 +177,8 @@ export default function ajaxConstructor(initConfig: Partial<DefaultConfig> = {})
       if (isNeedMixParamsWithToken) {
         params = mixParams(params, globalConfig.debugInfo);
       }
-    } else if (globalConfig.isNeedToken && isNeedToken && TokenUtil[getTokenMethod]) {
-      return TokenUtil[getTokenMethod]().then((token: string) => {
+    } else if (globalConfig.isNeedToken && isNeedToken && typeof getTokenMethod === 'function') {
+      return getTokenMethod().then((token: string) => {
         if (isNeedMixParamsWithToken) {
           params = mixParams(params, { token });
         }
@@ -223,7 +202,7 @@ export default function ajaxConstructor(initConfig: Partial<DefaultConfig> = {})
     // 允许关闭自动处理rejection情况
     if (!globalConfig.disableHandleReject && then && typeof then === 'function') {
       // 若接口调用时没有处理rejection情况，自动加入rejected function
-      p.then = (fulfilled: Function, rejected: Function) => {
+      p.then = (fulfilled: (value: any) => any, rejected: (reason: any) => any) => {
         const defaultRected = (err: Error) => {
           console.log(err);
         };

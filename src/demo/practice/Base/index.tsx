@@ -9,12 +9,12 @@ const Base = () => {
       {/* <BasicCounter />
       <StepCounter />
       <LimitCounter />
-      <Timer />
+      <Timer /> */}
       <Todo />
-      <DarkModeToggle />
+      {/* <DarkModeToggle />
       <AutoSaveEditor />
-      <MouseTracker /> */}
-      <List />
+      <MouseTracker />
+      <List /> */}
     </div>
   )
 }

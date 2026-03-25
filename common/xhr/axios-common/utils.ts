@@ -1,4 +1,4 @@
-import Util from 'UTILS';
+import { getUrlParameter } from 'UTILS';
 import { DebugInfo } from './types/type';
 
 /**
@@ -7,8 +7,8 @@ import { DebugInfo } from './types/type';
  */
 function getDebugInfoFromUrl(): DebugInfo {
   const debugInfo: DebugInfo = { debug_uid: '', token: '' };
-  const token = Util.getUrlParameter('token');
-  const debugUid = Util.getUrlParameter('debug_uid');
+  const token = getUrlParameter('token');
+  const debugUid = getUrlParameter('debug_uid');
   if (token) {
     debugInfo.token = token;
   }
@@ -47,7 +47,7 @@ function mixParams(params: Record<string, any>, mountParams: Record<string, any>
  * data 额外的数据  UnexpectDataType/UnexpectDataCode data为接口返回的数据   RequestError data为error
  * bigoCustomize 表示自定义的的错误对象 用于区分是否是原生的错误对象
  */
-function createError(message: string, name: string, data: any) {
+function createError(message: string, name: string, data?: any) {
   class DefinedError extends Error {
     constructor(msg: string) {
       super();
@@ -59,7 +59,9 @@ function createError(message: string, name: string, data: any) {
     bigoCustomize: boolean;
   }
   const definedError = new DefinedError(message);
-  definedError.data = data;
+  if (data) {
+    definedError.data = data;
+  }
   return definedError;
 }
 

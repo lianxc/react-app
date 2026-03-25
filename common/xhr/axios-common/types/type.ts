@@ -38,7 +38,7 @@ interface DefaultConfig {
   disableFormat: boolean; // 是否全局关闭yapi接口校验
   disableSentry: boolean; // 是否关闭sentry上报，不建议关闭
   disableHandleReject: boolean; // 是否关闭自动处理rejection情况
-  tipsMap: typeof TipsEnum;
+  tipsMap: Record<string, string>;
   codeMap: typeof CodeEnum;
   domain: string; // 接口域名
   formatTpl: undefined; // yapi校验数据
@@ -46,7 +46,7 @@ interface DefaultConfig {
   debugInfo: DebugInfo; // 调试信息
   reportErrCode: number[]; //  sentry上报code码区段
   disablePlugins: string[]; // 禁止插件
-  getTokenMethodMap: typeof GetTokenMethodEnum;
+  getTokenMethod: () => Promise<string>;
   isNeedToken: boolean;
 };
 
